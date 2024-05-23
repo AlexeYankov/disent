@@ -5,7 +5,6 @@ type ContainerType = {
 };
 
 export const Container = (props: ContainerType) => {
-  const { children } = props;
   return (
     <Box
       display={'flex'}
@@ -18,8 +17,9 @@ export const Container = (props: ContainerType) => {
       gap={'30px'}
       minWidth={'375px'}
       width={'375px'}
+      title={'подробней'}
     >
-      {children}
+      {props.children}
     </Box>
   );
 };

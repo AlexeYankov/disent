@@ -1,7 +1,6 @@
 import { Box, Center, Text } from '@chakra-ui/react';
 import React from 'react';
 
-
 export const CardKit = (props: any) => {
   const { title, children, label, gap = '5px', ...rest } = props;
   return (
@@ -14,15 +13,23 @@ export const CardKit = (props: any) => {
       alignItems={'center'}
       justifyContent={'start'}
       flexDirection={'column'}
-      _hover={{bg: 'green'}}
+      _hover={{ bg: 'green' }}
       transitionDuration="0.4s"
       borderRadius={'8px'}
       cursor={'pointer'}
       gap={gap}
       {...rest}
     >
-      <Center>
-        <Text fontSize="2xl" textAlign={'center'}>{label}</Text>
+      <Center maxW={'300px'}>
+        <Text
+          fontSize="2xl"
+          textAlign={'center'}
+          overflow={'hidden'}
+          whiteSpace={'nowrap'}
+          textOverflow={'ellipsis'}
+        >
+          {label}
+        </Text>
       </Center>
       {children}
     </Box>

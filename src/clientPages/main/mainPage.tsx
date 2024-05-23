@@ -12,7 +12,7 @@ import { toastWrapper } from '@/shared/ui/toast/toastWrapper';
 import { useCountriesStore } from '@/entities/countri-store';
 import { useInifinity } from '@/shared/helpers/useInfinity';
 import s from './mainPage.module.scss';
-import { url } from 'inspector';
+import Link from 'next/link';
 
 const MainClientPage = () => {
   useLoad();
@@ -34,7 +34,7 @@ const MainClientPage = () => {
   React.useEffect(() => {
     if (data?.length) {
       setCountries(data);
-      setCountriesInView(data.slice(0, 21));
+      setCountriesInView(data.slice(0, 20));
     }
   }, [data]);
 
@@ -43,34 +43,30 @@ const MainClientPage = () => {
       <Text fontSize="3xl" pt="40px">
         simple Disent test App
       </Text>
-      <div className={s.mainContainer}>
-        {countriesInView?.map((el: CountryType, i) => {
-          return (
-            <CardKit key={i} label={el.name.common}>
-              <div className={s.countryDescription}>
-                <div
-                  className={s.countryImage}
-                  style={{
-                    backgroundImage: `url(${el.flags.png})`,
-                  }}
-                />
-                <div>
-                  <span>Столица</span>
-                  <span>{el.capital}</span>
+      
+        <div className={s.mainContainer}>
+          {countriesInView?.map((el: CountryType, i) => {
+            const routeTo = el.cca2 + el.cca3 + el.ccn3
+            return (
+              <Link href={routeTo} key={i}>
+              <CardKit label={el.name.common}>
+                <div className={s.countryDescription}>
+                  <div
+                    className={s.countryImage}
+                    style={{
+                      backgroundImage: `url(${el.flags.png})`,
+                    }}
+                  />
+                  <div className={s.countryCapital}>
+                    <span>Столица</span>
+                    <span>{el.capital}</span>
+                  </div>
                 </div>
-                {/* <div>
-                  <span>Население</span>
-                  <span>{Math.round(el.population / 1000)} тыс.</span>
-                </div>
-                <div>
-                  <span>Признана в мире</span>
-                  <span>{el.status}</span>
-                </div> */}
-              </div>
-            </CardKit>
-          );
-        })}
-      </div>
+              </CardKit>
+              </Link>
+            );
+          })}
+        </div>
       <input id="anchor" className={s.hiddenInput} type="text" />
     </Container>
   );

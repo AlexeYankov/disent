@@ -25,8 +25,6 @@ export const theme = extendTheme({
     global: (props: StyleFunctionProps) => ({
       body: {
         fontFamily: 'body',
-        // color: mode('dark', 'red')(props),
-        // bg: mode('dark', 'dark.--color-dark-900')(props),
         lineHeight: 'base',
       },
 
