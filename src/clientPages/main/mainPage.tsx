@@ -20,16 +20,10 @@ const MainClientPage = () => {
   const { error, data } = useGetCountries();
   const { countriesInView, setCountriesInView, setCountries } =
     useCountriesStore();
-
-  React.useEffect(() => {
     if (error?.message) {
-      toastWrapper(error.message, true);
+      return <NotFound />;
     }
-  }, [error]);
-
-  if (error?.message) {
-    return <NotFound />;
-  }
+  
 
   React.useEffect(() => {
     if (data?.length) {
