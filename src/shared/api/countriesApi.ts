@@ -13,7 +13,6 @@ const useGetCountries = () => {
     queryKey: ['countries'],
     queryFn: async () =>
       await countriesApi.getCountries().then((res) => {
-        console.log(res.data);
         return res.data;
       }),
   });

@@ -19,7 +19,7 @@ export function useInifinity () {
         };
       }
       setScrollY();
-      if (getAnchor - 1000 <= 0) {
+      if (getAnchor - 1800 <= 0) {
         if (countriesInView.length + 20 <= countries.length) {
           const newCountriesInView = [
             ...countriesInView,
@@ -28,7 +28,10 @@ export function useInifinity () {
               countriesInView.length + 20
             ),
           ];
-          setCountriesInView(newCountriesInView);
+          return setCountriesInView(newCountriesInView);
+        }
+        if (countriesInView.length < countries.length) {
+          setCountriesInView(countries)
         }
       }
     }, [view]);

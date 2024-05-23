@@ -1,4 +1,47 @@
 .hiddenInput {
-    opacity: 0;
-    z-index: -1;
+  opacity: 0;
+  z-index: -1;
+}
+
+.mainContainer {
+  display: inline-grid;
+  // justify-content: center;
+  // margin: 0 auto;
+  // flex-wrap: wrap;
+  grid-template-columns: repeat(3, 4fr);
+  max-width: 1440px;
+  gap: 20px;
+}
+
+.countryDescription {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 10px;
+}
+
+.countryImage {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  max-width: 300px;
+  width: 300px;
+  min-width: 300px;
+  max-height: 120px;
+  height: 120px;
+}
+
+@media screen and (max-width: 951px) {
+  .mainContainer {
+    gap: 10px;
+    grid-template-columns: repeat(2, 6fr);
   }
+}
+@media screen and (max-width: 651px) {
+  .mainContainer {
+    gap: 10px;
+    grid-template-columns: auto;
+  }
+}
