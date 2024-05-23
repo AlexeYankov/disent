@@ -11,12 +11,14 @@ import { CountryType } from '@/entities/types';
 import { toastWrapper } from '@/shared/ui/toast/toastWrapper';
 import { useCountriesStore } from '@/entities/countri-store';
 import { useInifinity } from '@/shared/helpers/useInfinity';
+import { RemoveScroll } from 'react-remove-scroll';
 import s from './mainPage.module.scss';
 import Link from 'next/link';
 import Loader from '@/shared/ui/loader';
 
 const MainClientPage = () => {
   useLoad();
+  const [lock, setLock] = React.useState(false);
   const { error, data } = useGetCountries();
   const { countriesInView, setCountriesInView, setCountries } =
     useCountriesStore();
@@ -40,8 +42,9 @@ const MainClientPage = () => {
   }
 
   return (
+    <RemoveScroll enabled={lock}>
     <Container>
-      <Text textAlign={'center'} minW={'350px'} fontSize={{base: "xl", sm: '3xl'}} pt="40px">
+      <Text textAlign={'center'} fontSize={{base: "xl", sm: '3xl'}} py="30px">
         simple Disent test App
       </Text>
 
@@ -71,6 +74,7 @@ const MainClientPage = () => {
       </div>
       <input id="anchor" className={s.hiddenInput} type="text" />
     </Container>
+    </RemoveScroll>
   );
 };
 

@@ -21,6 +21,7 @@
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
+    "react-remove-scroll": "^2.5.10",
     "react-toastify": "^10.0.5",
     "sass": "^1.77.2",
     "use-dehydrated-state": "^0.1.0",

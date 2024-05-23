@@ -1,8 +1,8 @@
-import { Metadata } from 'next';
-import { DehydratedState, QueryClient } from '@tanstack/react-query';
+import React from 'react';
 import Providers from '@/shared/provider/providers';
 import BaseRootLayout from '@/shared/layouts/baseRootLayout';
-import React from 'react';
+import { Metadata } from 'next';
+import { DehydratedState, QueryClient } from '@tanstack/react-query';
 import { countriesApi } from '@/shared/api/countriesApi';
 
 export const metadata: Metadata = {
@@ -28,9 +28,7 @@ export default async function RootLayout({
     <html lang={lang}>
       <body>
         <Providers dehydratedState={{} as DehydratedState} lang={lang}>
-          <BaseRootLayout>
-           {children}
-          </BaseRootLayout>
+          <BaseRootLayout>{children}</BaseRootLayout>
         </Providers>
       </body>
     </html>

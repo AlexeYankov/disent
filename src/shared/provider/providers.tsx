@@ -2,7 +2,6 @@
 
 import {
   ChakraBaseProvider,
-  ChakraProvider,
   extendTheme,
 } from '@chakra-ui/react';
 import React from 'react';
@@ -26,7 +25,7 @@ export const theme = extendTheme({
       body: {
         fontFamily: 'body',
         lineHeight: 'base',
-        overflowX: 'hidden'
+        overflowY: 'scroll',
       },
 
       colors: {
