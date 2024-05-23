@@ -26,7 +26,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env*.local
+# обычно не кладу env в git
+#.env*.local
 
 # vercel
 .vercel

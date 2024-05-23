@@ -1,4 +1,6 @@
 import { Box, Center, Text } from '@chakra-ui/react';
+import React from 'react';
+
 
 export const CardKit = (props: any) => {
   const { title, children, label, gap = '25px', ...rest } = props;

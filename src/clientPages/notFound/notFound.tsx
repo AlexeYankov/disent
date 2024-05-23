@@ -1,5 +1,5 @@
 import React from 'react';
-import img from '../../../../public/images/404Page.svg';
+import img from '/public/images/404Page.svg';
 import Image from 'next/image';
 import { Center } from '@chakra-ui/react';
 

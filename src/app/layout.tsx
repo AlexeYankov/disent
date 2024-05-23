@@ -3,6 +3,7 @@ import { DehydratedState, QueryClient } from '@tanstack/react-query';
 import Providers from '@/shared/provider/providers';
 import BaseRootLayout from '@/shared/layouts/baseRootLayout';
 import React from 'react';
+import { countriesApi } from '@/shared/api/countriesApi';
 
 export const metadata: Metadata = {
   title: 'Welcome to Disent test App',
@@ -15,6 +16,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const lang = 'en';
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery({
+    queryKey: ['countries'],
+    queryFn: async () =>
+      await countriesApi.getCountries().then((res) => {
+        return res.data;
+      }),
+  });
   return (
     <html lang={lang}>
       <body>
