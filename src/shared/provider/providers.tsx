@@ -26,6 +26,7 @@ export const theme = extendTheme({
       body: {
         fontFamily: 'body',
         lineHeight: 'base',
+        overflowX: 'hidden'
       },
 
       colors: {

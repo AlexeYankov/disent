@@ -41,7 +41,7 @@ const MainClientPage = () => {
 
   return (
     <Container>
-      <Text fontSize="3xl" pt="40px">
+      <Text textAlign={'center'} minW={'350px'} fontSize={{base: "xl", sm: '3xl'}} pt="40px">
         simple Disent test App
       </Text>
 

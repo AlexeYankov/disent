@@ -7,6 +7,7 @@
   display: inline-grid;
   grid-template-columns: repeat(3, 4fr);
   max-width: 1440px;
+  
   gap: 20px;
 }
 
@@ -30,11 +31,12 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  max-width: 300px;
-  width: 300px;
-  min-width: 300px;
+  max-width: 250px;
+  width: 100%;
+  min-width: 250px;
   max-height: 120px;
   height: 120px;
+  overflow-x: hidden;
 }
 
 @media screen and (max-width: 951px) {

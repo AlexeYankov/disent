@@ -12,7 +12,7 @@ export const Container = (props: ContainerType) => {
       justifyContent={'center'}
       flexDirection={'column'}
       maxW={'1440px'}
-      px={'25px'}
+      px={'50px'}
       paddingBottom={'25px'}
       gap={'30px'}
       minWidth={'375px'}
