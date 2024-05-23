@@ -13,6 +13,7 @@ import { useCountriesStore } from '@/entities/countri-store';
 import { useInifinity } from '@/shared/helpers/useInfinity';
 import s from './mainPage.module.scss';
 import Link from 'next/link';
+import Loader from '@/shared/ui/loader';
 
 const MainClientPage = () => {
   useLoad();
@@ -45,6 +46,7 @@ const MainClientPage = () => {
       </Text>
 
       <div className={s.mainContainer}>
+        {!countriesInView.length && <Loader />}
         {countriesInView?.map((el: CountryType, i) => {
           const routeTo = el.cca2 + el.cca3 + el.ccn3;
           return (
