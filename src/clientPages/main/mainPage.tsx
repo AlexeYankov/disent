@@ -16,15 +16,9 @@ import Link from 'next/link';
 
 const MainClientPage = () => {
   useLoad();
-  useInifinity();
   const { error, data } = useGetCountries();
   const { countriesInView, setCountriesInView, setCountries } =
     useCountriesStore();
-    if (error?.message) {
-      return <NotFound />;
-    }
-  
-
   React.useEffect(() => {
     if (data?.length) {
       setCountries(data);
@@ -32,17 +26,29 @@ const MainClientPage = () => {
     }
   }, [data]);
 
+  useInifinity();
+
+  React.useEffect(() => {
+    if (error?.message) {
+      toastWrapper(error.message, true);
+    }
+  }, [error]);
+
+  if (error?.message) {
+    return <NotFound />;
+  }
+
   return (
     <Container>
       <Text fontSize="3xl" pt="40px">
         simple Disent test App
       </Text>
-      
-        <div className={s.mainContainer}>
-          {countriesInView?.map((el: CountryType, i) => {
-            const routeTo = el.cca2 + el.cca3 + el.ccn3
-            return (
-              <Link href={routeTo} key={i}>
+
+      <div className={s.mainContainer}>
+        {countriesInView?.map((el: CountryType, i) => {
+          const routeTo = el.cca2 + el.cca3 + el.ccn3;
+          return (
+            <Link href={routeTo} key={i}>
               <CardKit label={el.name.common}>
                 <div className={s.countryDescription}>
                   <div
@@ -57,10 +63,10 @@ const MainClientPage = () => {
                   </div>
                 </div>
               </CardKit>
-              </Link>
-            );
-          })}
-        </div>
+            </Link>
+          );
+        })}
+      </div>
       <input id="anchor" className={s.hiddenInput} type="text" />
     </Container>
   );
