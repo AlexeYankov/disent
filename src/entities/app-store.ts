@@ -21,7 +21,6 @@ export const useAppStore = create<AppStore>()(
     (set, get) => ({
       isAppLoading: true,
       isAppError: false,
-      // addABear: () => set({ bears: get().bears + 1 }),
       setAppLoading: (value: boolean) => {
         return set({ isAppLoading: value });
       },
