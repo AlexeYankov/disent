@@ -9,12 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@tanstack/react-query": "^5.37.1",
     "axios": "^1.7.2",
+    "framer-motion": "^11.2.6",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-toastify": "^10.0.5"
+    "react-toastify": "^10.0.5",
+    "sass": "^1.77.2",
+    "use-dehydrated-state": "^0.1.0",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@types/node": "^20",
