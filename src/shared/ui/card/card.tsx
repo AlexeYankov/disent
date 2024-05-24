@@ -17,6 +17,7 @@ export const CardKit = (props: any) => {
       transitionDuration="0.4s"
       borderRadius={'8px'}
       cursor={'pointer'}
+      width={'300px'}
       gap={gap}
       {...rest}
     >
