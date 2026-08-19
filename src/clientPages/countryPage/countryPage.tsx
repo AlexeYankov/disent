@@ -31,9 +31,7 @@ const CountryClientPage = (prop: CountryClientPageType) => {
     notFound();
   }
 
-  const capital = Array.isArray(countrieInfo.capital)
-    ? countrieInfo.capital.join(', ')
-    : countrieInfo.capital;
+  const capital = countrieInfo.capital?.join(', ');
 
   return (
     <Container>

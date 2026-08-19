@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Disent
 
-## Getting Started
+Браузер стран на данных [REST Countries API](https://restcountries.com/) (v3.1): список с бесконечной подгрузкой и страница страны с площадью, населением, столицей и регионом.
 
-First, run the development server:
+## Стек
+
+- Next.js 14 (App Router), React 18, TypeScript (`strict`)
+- Chakra UI 2, SCSS-модули
+- TanStack React Query 5 (данные), Zustand (только UI-состояние)
+- Vitest + React Testing Library
+
+## Установка и запуск
+
+Проект использует **pnpm** как единственный package manager (см. `packageManager` в `package.json`).
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+cp .env.example .env.local   # заполнить переменные окружения
+pnpm dev                     # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Команды
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Команда | Назначение |
+|---|---|
+| `pnpm dev` | dev-сервер |
+| `pnpm build` | production-сборка |
+| `pnpm start` | запуск production-сборки |
+| `pnpm lint` | ESLint |
+| `pnpm test` | прогон тестов один раз |
+| `pnpm test:watch` | тесты в watch-режиме |
+| `npx tsc --noEmit` | проверка типов |
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Переменные окружения
 
-## Learn More
+См. `.env.example`.
 
-To learn more about Next.js, take a look at the following resources:
+| Переменная | Назначение |
+|---|---|
+| `NEXT_PUBLIC_BASE_API_URL` | базовый URL REST Countries API (`https://restcountries.com/v3.1/`). Публичная (`NEXT_PUBLIC_*`), т.к. запросы идут и с клиента, отдельных серверных секретов у проекта нет. |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Структура и поток данных
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```
+src/
+├── app/              # Next.js роуты (тонкие обёртки над clientPages)
+├── clientPages/       # 'use client'-реализации страниц
+├── entities/          # типы домена, Zustand-сторы (только UI-состояние)
+└── shared/
+    ├── api/            # axios-инстанс + React Query хуки (useGetCountries, useGetCountry)
+    ├── helpers/        # кастомные хуки (useLoad, useInfinity)
+    ├── layouts/        # обёртка root layout
+    ├── provider/       # Chakra + QueryClient + toast-провайдер
+    └── ui/              # переиспользуемые UI-компоненты
+```
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Список стран (`/`) SSR-префетчится в `app/layout.tsx` через `dehydrate(queryClient)` и гидрируется на клиенте тем же query key (`useGetCountries`) — единственный источник данных о списке стран.
+- Догрузка карточек — `useInfinity`: клиентская нарезка уже загрученного списка по 20 штук через `IntersectionObserver` (с fallback-кнопкой «Загрузить ещё»), без повторных сетевых запросов.
+- Страница страны (`/[name]`, где `name` — код `cca3`) запрашивает данные напрямую через `useGetCountry(cca3)`, не завися от того, была ли открыта главная страница. Отсутствующая страна или ошибка API уводят на `notFound()` (`app/not-found.tsx`).
+- Zustand (`entities/app-store.ts`) хранит только UI-флаги (глобальный loader), не серверные данные.

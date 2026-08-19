@@ -51,9 +51,7 @@ const MainClientPage = () => {
           {!visibleItems.length && <Loader />}
           {visibleItems.map((el: CountryType) => {
             const routeTo = el.cca3;
-            const capital = Array.isArray(el.capital)
-              ? el.capital.join(', ')
-              : el.capital;
+            const capital = el.capital?.join(', ');
             return (
               <Link href={routeTo} key={el.cca3}>
                 <CardKit label={el.name.common}>
