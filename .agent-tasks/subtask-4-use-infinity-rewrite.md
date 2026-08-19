@@ -1,9 +1,12 @@
+Перепиши `src/shared/helpers/useInfinity.tsx`, заменив содержимое ПОЛНОСТЬЮ на следующий код:
+
+```tsx
 import React from 'react';
 import { CountryType } from '@/entities/types';
 
 const PAGE_SIZE = 20;
 
-export function useInfinity(items: CountryType[]) {
+export function useInifinity(items: CountryType[]) {
   const [visibleCount, setVisibleCount] = React.useState(PAGE_SIZE);
   const sentinelRef = React.useRef<HTMLDivElement | null>(null);
 
@@ -34,3 +37,16 @@ export function useInfinity(items: CountryType[]) {
 
   return { visibleItems, sentinelRef, hasMore, loadMore };
 }
+```
+
+Что сделать:
+1. Открой `src/shared/helpers/useInfinity.tsx`.
+2. Замени его содержимое ПОЛНОСТЬЮ на код из блока выше, один в один.
+3. Больше никаких файлов не трогай.
+
+Готово когда:
+- файл `src/shared/helpers/useInfinity.tsx` содержит ровно этот код.
+
+Действуй так: read_file src/shared/helpers/useInfinity.tsx → edit_file с указанным выше содержимым. Не запускай tsc/npx/eslint/npm test.
+
+/no_think

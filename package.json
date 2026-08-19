@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.10.10",
@@ -17,22 +19,27 @@
     "@tanstack/react-query-devtools": "^5.101.4",
     "@types/react-query": "^1.2.9",
     "axios": "^1.19.0",
-    "framer-motion": "^11.18.2",
     "next": "14.2.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-remove-scroll": "^2.7.2",
     "react-toastify": "^10.0.6",
     "sass": "^1.102.0",
-    "use-dehydrated-state": "^0.1.0",
     "zustand": "^4.5.7"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.5",
     "@types/node": "^20.19.43",
     "@types/react": "^18.3.31",
     "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^6.0.5",
     "eslint": "^8.57.1",
     "eslint-config-next": "14.2.3",
-    "typescript": "^5.9.3"
+    "jsdom": "^30.0.1",
+    "typescript": "^5.9.3",
+    "vite-tsconfig-paths": "^6.1.1",
+    "vitest": "^4.1.11"
   }
 }

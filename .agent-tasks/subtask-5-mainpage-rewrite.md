@@ -1,14 +1,18 @@
+Перепиши `src/clientPages/main/mainPage.tsx`, заменив содержимое ПОЛНОСТЬЮ на следующий код:
+
+```tsx
 'use client';
 
 import React from 'react';
-import { Button, Center, Text } from '@chakra-ui/react';
+import NotFound from '../notFound/notFound';
+import { Button, Text } from '@chakra-ui/react';
 import { useGetCountries } from '@/shared/api/countriesApi';
 import { useLoad } from '@/shared/helpers/useLoad';
 import { Container } from '@/shared/ui/container';
 import { CardKit } from '@/shared/ui/card';
 import { CountryType } from '@/entities/types';
 import { toastWrapper } from '@/shared/ui/toast/toastWrapper';
-import { useInfinity } from '@/shared/helpers/useInfinity';
+import { useInifinity } from '@/shared/helpers/useInfinity';
 import { RemoveScroll } from 'react-remove-scroll';
 import s from './mainPage.module.scss';
 import Link from 'next/link';
@@ -17,9 +21,9 @@ import Loader from '@/shared/ui/loader';
 const MainClientPage = () => {
   useLoad();
   const [lock, setLock] = React.useState(false);
-  const { error, data, refetch, isFetching } = useGetCountries();
+  const { error, data } = useGetCountries();
 
-  const { visibleItems, sentinelRef, hasMore, loadMore } = useInfinity(
+  const { visibleItems, sentinelRef, hasMore, loadMore } = useInifinity(
     data ?? []
   );
 
@@ -30,14 +34,7 @@ const MainClientPage = () => {
   }, [error]);
 
   if (error?.message) {
-    return (
-      <Center flexDirection={'column'} p="7" marginTop="40px" gap={'20px'}>
-        <Text fontSize="2xl">Не удалось загрузить список стран</Text>
-        <Button onClick={() => refetch()} isLoading={isFetching}>
-          Повторить
-        </Button>
-      </Center>
-    );
+    return <NotFound />;
   }
 
   return (
@@ -88,3 +85,16 @@ const MainClientPage = () => {
 };
 
 export default MainClientPage;
+```
+
+Что сделать:
+1. Открой `src/clientPages/main/mainPage.tsx`.
+2. Замени его содержимое ПОЛНОСТЬЮ на код из блока выше, один в один.
+3. Больше никаких файлов не трогай (в частности не трогай `src/entities/countri-store.ts` — он больше не используется, но удалять его сейчас не нужно).
+
+Готово когда:
+- файл `src/clientPages/main/mainPage.tsx` содержит ровно этот код.
+
+Действуй так: read_file src/clientPages/main/mainPage.tsx → edit_file с указанным выше содержимым. Не запускай tsc/npx/eslint/npm test.
+
+/no_think

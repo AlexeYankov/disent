@@ -1,3 +1,6 @@
+Перепиши `src/clientPages/countryPage/countryPage.tsx`, заменив содержимое ПОЛНОСТЬЮ на следующий код:
+
+```tsx
 'use client';
 
 import { useGetCountry } from '@/shared/api/countriesApi';
@@ -55,9 +58,7 @@ const CountryClientPage = (prop: CountryClientPageType) => {
             <div
               className={s.countryImage}
               style={{
-                backgroundImage: countrieInfo.flags?.png
-                  ? `url(${countrieInfo.flags.png})`
-                  : undefined,
+                backgroundImage: `url(${countrieInfo.flags.png})`,
               }}
             />
             <div className={s.countryCapital}>
@@ -100,3 +101,16 @@ const CountryClientPage = (prop: CountryClientPageType) => {
 };
 
 export default CountryClientPage;
+```
+
+Что сделать:
+1. Открой `src/clientPages/countryPage/countryPage.tsx`.
+2. Замени его содержимое ПОЛНОСТЬЮ на код из блока выше, один в один.
+3. Больше никаких файлов не трогай.
+
+Готово когда:
+- файл `src/clientPages/countryPage/countryPage.tsx` содержит ровно этот код.
+
+Действуй так: read_file src/clientPages/countryPage/countryPage.tsx → edit_file с указанным выше содержимым. Не запускай tsc/npx/eslint/npm test.
+
+/no_think

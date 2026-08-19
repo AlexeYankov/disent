@@ -3,6 +3,7 @@ import Providers from '@/shared/provider/providers';
 import BaseRootLayout from '@/shared/layouts/baseRootLayout';
 import { Metadata } from 'next';
 import { DehydratedState, QueryClient } from '@tanstack/react-query';
+import { dehydrate } from '@tanstack/react-query';
 import { countriesApi } from '@/shared/api/countriesApi';
 
 export const metadata: Metadata = {
@@ -27,7 +28,7 @@ export default async function RootLayout({
   return (
     <html lang={lang}>
       <body>
-        <Providers dehydratedState={{} as DehydratedState} lang={lang}>
+        <Providers dehydratedState={dehydrate(queryClient)} lang={lang}>
           <BaseRootLayout>{children}</BaseRootLayout>
         </Providers>
       </body>

@@ -1,3 +1,6 @@
+Перепиши `src/shared/ui/card/card.tsx`, заменив содержимое ПОЛНОСТЬЮ на следующий код:
+
+```tsx
 import React from 'react';
 import { Box, BoxProps, Center, Text } from '@chakra-ui/react';
 
@@ -43,3 +46,16 @@ export const CardKit = (props: CardKitProps) => {
     </Box>
   );
 };
+```
+
+Что сделать:
+1. Открой `src/shared/ui/card/card.tsx`.
+2. Замени его содержимое ПОЛНОСТЬЮ на код из блока выше, один в один (единственное изменение по сути — `props: any` заменён на типизированный интерфейс `CardKitProps`, вся остальная логика и разметка идентичны).
+3. Больше никаких файлов не трогай.
+
+Готово когда:
+- файл `src/shared/ui/card/card.tsx` содержит ровно этот код.
+
+Действуй так: read_file src/shared/ui/card/card.tsx → edit_file с указанным выше содержимым. Не запускай tsc/npx/eslint/npm test.
+
+/no_think

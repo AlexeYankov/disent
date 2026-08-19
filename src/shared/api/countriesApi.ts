@@ -6,6 +6,9 @@ const countriesApi = {
   getCountries() {
     return instance.get<Array<CountryType>>(`${'all'}`);
   },
+  getCountryByCode(code: string) {
+    return instance.get<Array<CountryType>>(`alpha/${code}`);
+  },
 };
 
 const useGetCountries = () => {
@@ -18,4 +21,12 @@ const useGetCountries = () => {
   });
 };
 
-export { countriesApi, useGetCountries };
+const useGetCountry = (code: string) => {
+  return useQuery({
+    queryKey: ['country', code],
+    queryFn: async () => (await countriesApi.getCountryByCode(code)).data[0],
+    enabled: !!code,
+  });
+};
+
+export { countriesApi, useGetCountries, useGetCountry };
